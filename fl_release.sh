@@ -5,7 +5,7 @@ cd ~/ios/IFReader
 SCHEME_NAME="FLReader"
 DATE=$(date +"%m%d_%H%M")
 OUT_FILE_NAME=${SCHEME_NAME}${DATE}
-CONFIG_DIR=Debug
+CONFIG_DIR=Release
 
 #工程配置文件路径
 project_infoplist_path=./${SCHEME_NAME}/Info.plist
@@ -17,7 +17,7 @@ FILE_NAME="V${bundleVersion}_${DATE}"
 #package
 xcodebuild clean -scheme ${SCHEME_NAME} -configuration ${CONFIG_DIR}
 xcodebuild archive -scheme ${SCHEME_NAME} -configuration ${CONFIG_DIR} -archivePath ~/Desktop/${OUT_FILE_NAME}.xcarchive
-xcodebuild -exportArchive -archivePath ~/Desktop/${OUT_FILE_NAME}.xcarchive -exportPath ~/Desktop/${OUT_FILE_NAME} -exportOptionsPlist  ./ExportOptions.plist
+xcodebuild -exportArchive -archivePath ~/Desktop/${OUT_FILE_NAME}.xcarchive -exportPath ~/Desktop/${OUT_FILE_NAME} -exportOptionsPlist  ./"ExportOptions(ad-hoc)".plist
 
 mkdir -p ~/Desktop/${FILE_NAME}
 mv ~/Desktop/${OUT_FILE_NAME}/${SCHEME_NAME}.ipa ~/Desktop/${FILE_NAME}/${FILE_NAME}.ipa

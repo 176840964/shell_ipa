@@ -33,8 +33,10 @@ FILE_PATH=$1
 WORKSPACE_FILE_NAME=$2
 SCHEME_NAME=$3
 
+EXPORT_OPTIONS_FILE_NAME='ExportOptions'
 CONFIGURATION=QATest
 if [ $4 -eq 1 ];then
+    EXPORT_OPTIONS_FILE_NAME='ExportOptions(ad-hoc)'
 	CONFIGURATION=Release
 fi
 
@@ -50,5 +52,5 @@ xcodebuild clean -workspace ${FILE_PATH}/${WORKSPACE_FILE_NAME}.xcworkspace  -sc
 xcodebuild archive -workspace ${FILE_PATH}/${WORKSPACE_FILE_NAME}.xcworkspace -scheme ${SCHEME_NAME} -configuration ${CONFIGURATION} -archivePath ~/Desktop/${OUT_FILE_NAME}.xcarchive
 
 #export ipa
-xcodebuild -exportArchive -archivePath ~/Desktop/${OUT_FILE_NAME}.xcarchive -exportPath ~/Desktop/${OUT_FILE_NAME} -exportOptionsPlist ${FILE_PATH}/${SCHEME_NAME}/ExportOptions.plist
+xcodebuild -exportArchive -archivePath ~/Desktop/${OUT_FILE_NAME}.xcarchive -exportPath ~/Desktop/${OUT_FILE_NAME} -exportOptionsPlist ${FILE_PATH}/${SCHEME_NAME}/${EXPORT_OPTIONS_FILE_NAME}.plist
 
