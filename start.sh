@@ -37,9 +37,9 @@ DATE=$(date +"%m%d_%H%M")
 OUT_FILE_NAME=${SCHEME_NAME}${DATE}
 
 #工程配置文件路径
-project_infoplist_path=${FILE_PATH}/${SCHEME_NAME}/${SCHEME_NAME}/Info.plist
-#取build值
-bundleVersion=$(/usr/libexec/PlistBuddy -c "print CFBundleVersion" ${project_infoplist_path})
+#project_infoplist_path=${FILE_PATH}/${SCHEME_NAME}/${SCHEME_NAME}/Info.plist
+#取bundle value值
+#bundleVersion=$(/usr/libexec/PlistBuddy -c "print CFBundleVersion" ${project_infoplist_path})
 
 #当前脚本路径
 SCRIPT_PATH=`dirname $0`
@@ -50,6 +50,9 @@ CONFIG_DIR="Debug"
 if [ $4 -eq 1 ];then
 	CONFIG_DIR="Release"
 fi
+
+#取bundle value值
+bundleVersion=$(/usr/libexec/PlistBuddy -c "print:ApplicationProperties:CFBundleVersion" ~/Desktop/${OUT_FILE_NAME}.xcarchive/Info.plist)
 
 FILE_NAME="V${bundleVersion}_${DATE}"
 mkdir -p ~/Desktop/${FILE_NAME}
